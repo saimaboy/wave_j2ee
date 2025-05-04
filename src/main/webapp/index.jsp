@@ -1,302 +1,114 @@
-<%-- 
-    Document   : index
-    Created on : 17 Nov 2023, 17:58:28
-    Author     : Sandun
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="models.accesories"%>
+<%@ page import="models.Cart" %>
+<%
+  String contextPath = request.getContextPath();
+  String selectedPublisher = request.getParameter("publisher");
+%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="slider.css">
-        <link rel="stylesheet" href="cart.css">
-        
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        
-        <title>Your Everyday Supermart | GREEN Supermart</title>
-        
-        <link rel="icon" href="https://i.postimg.cc/MKJm2kGp/favicon.png">
-        
-        <link rel="preload" href="style.css" as="style" type="text/css">
-        <link rel="preload" href="slider.css" as="style" type="text/css">
-        <link rel="preload" href="cart.css" as="style" type="text/css">
-        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" type="text/css" crossorigin>
-        <link rel="preload" href="https://i.postimg.cc/MKJm2kGp/favicon.png" as="image" type="image/png">
-        <link rel="preload" href="https://i.postimg.cc/G9nCKgLp/green-Logo.png" as="image" type="image/png">
-        <link rel="preload" href="https://i.postimg.cc/brf9L1tT/placeholder.png" as="image" type="image/png">
-        
-        <script src="script.js" defer></script>
-        <script src="slider.js" defer></script>
-        <script src="cart.js" defer></script>
-    </head>
-    
-    <body>
-        
-        <!-- NAVBAR START ============================================================-->
-        <nav id="navbar"></nav>
-        <script src="navbar.js"></script>
-        <!--============================================================== NAVBAR END -->
-        
-        
-        <!-- PAGE-CONTENT START ======================================================-->
-        <div class="containerBlock flex">
-            <div class="container">
-                
-                <section class="homeSlider flex flexRow" style="height: 75vh; width: 100%; align-items: center; margin-bottom: 60px;">
-                    
-                    <div class="prevSlide flex" id="prevSlide">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </div>
-                    
-                    <a class="currentSlideLink" id="currentSlideLink" href="">
-                        <div class="currentSlide" id="currentSlide">
-                            <img id="currentSlideImg" src="https://i.postimg.cc/brf9L1tT/placeholder.png">
-                        </div>
-                    </a>
-                    
-                    <div class="nextSlide flex" id="nextSlide">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </div>
-                    
-                </section>
-                
-                
-                <section>
-                    <h1 class="sectionHeading" style="text-align: center; margin-bottom: 40px; font-size: 26px;">Top Deals</h1>
-                    
-                    <div class="cardsContainer flex flexRow">
-                        <div class="productCard flex flexCol">
-                            <div class="productImg flex">
-                                <div class="productIcons flex flexRow">
-                                    <span class="discIndicator">
-                                        -20%
-                                    </span>
-                                    <span class="wishlistIndicator">
-                                        <i class="fa-solid fa-heart" onclick="addToWishlist(2)"></i>
-                                    </span>
-                                </div>
-                                <img src="https://i.postimg.cc/yNz3CCB9/Coca-cola.jpg">
-                            </div>
-                            <div class="productContent flex flexCol">
-                                <h1>
-                                    <a href="/singleProduct.jsp?productId=2">
-                                        Coca Cola Pet 1.5L
-                                    </a>
-                                </h1>
-                                <span class="productPrice flex flexRow">
-                                    <h2 class="price">Rs. 304.00</h2>
-                                    <h2 class="discPrice">Rs. 380.00</h2>
-                                </span>
-                                <button class="addToCartBtn flex flexRow" onclick="addToCart(2)">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="productCard flex flexCol">
-                            <div class="productImg flex">
-                                <div class="productIcons flex flexRow">
-                                    <span class="discIndicator">
-                                        -20%
-                                    </span>
-                                    <span class="wishlistIndicator">
-                                        <i class="fa-regular fa-heart" onclick="addToWishlist(42)"></i>
-                                    </span>
-                                </div>
-                                <img src="https://i.postimg.cc/Gmwkqbsm/Sante-Granola-Chocolate.jpg">
-                            </div>
-                            <div class="productContent flex flexCol">
-                                <h1>
-                                    <a href="/singleProduct.jsp?productId=42">
-                                        Sante Granola Chocolate
-                                    </a>
-                                </h1>
-                                <span class="productPrice flex flexRow">
-                                    <h2 class="price">Rs. 1850.00</h2>
-                                    <h2 class="discPrice">Rs. 1480.00</h2>
-                                </span>
-                                <button class="addToCartBtn flex flexRow" onclick="addToCart(42)">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="productCard flex flexCol">
-                            <div class="productImg flex">
-                                <div class="productIcons flex flexRow">
-                                    <span class="discIndicator">
-                                        -20%
-                                    </span>
-                                    <span class="wishlistIndicator">
-                                        <i class="fa-regular fa-heart" onclick="addToWishlist(37)"></i>
-                                    </span>
-                                </div>
-                                <img src="https://i.postimg.cc/0jnYmcTp/Grapes-Black.png">
-                            </div>
-                            <div class="productContent flex flexCol">
-                                <h1>
-                                    <a href="/singleProduct.jsp?productId=37">
-                                        Grapes - Black
-                                    </a>
-                                </h1>
-                                <span class="productPrice flex flexRow">
-                                    <h2 class="price">Rs. 2450.00</h2>
-                                    <h2 class="discPrice">Rs. 1960.00</h2>
-                                </span>
-                                <button class="addToCartBtn flex flexRow" onclick="addToCart(37)">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="productCard flex flexCol">
-                            <div class="productImg flex">
-                                <div class="productIcons flex flexRow">
-                                    <span class="discIndicator">
-                                        -20%
-                                    </span>
-                                    <span class="wishlistIndicator">
-                                        <i class="fa-regular fa-heart" onclick="addToWishlist(58)"></i>
-                                    </span>
-                                </div>
-                                <img src="https://i.postimg.cc/Wbmpw71W/Promate-Book-100-Pgs.jpg">
-                            </div>
-                            <div class="productContent flex flexCol">
-                                <h1>
-                                    <a href="/singleProduct.jsp?productId=58">
-                                        Promate Book 100 Pgs
-                                    </a>
-                                </h1>
-                                <span class="productPrice flex flexRow">
-                                    <h2 class="price">Rs. 400.00</h2>
-                                    <h2 class="discPrice">Rs. 320.00</h2>
-                                </span>
-                                <button class="addToCartBtn flex flexRow" onclick="addToCart(58)">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <span class="moreDealsLink flex flexRow">
-                        <a href="deals.jsp">View More Deals</a>
-                        <i class="fa-solid fa-square-arrow-up-right"></i>
-                    </span>
-                    
-                </section>
-                
-                
-                
-                <section style="margin-top: 60px;">
-                    <h1 class="sectionHeading" style="text-align: center; margin-bottom: 40px; font-size: 26px;">Top Categories</h1>
-                    
-                    <div class="cardsContainer flex flexRow">
-                        <a style="height: auto; width: 20%; text-decoration: none;" href="categories/beverages.jsp">
-                            <div class="catCard flex flexCol">
-                                <div class="catCardImg flex">
-                                    <img src="https://img.freepik.com/premium-vector/cold-drink-icon_933463-49968.jpg">
-                                </div>
-                                <div class="catContent flex flexRow">
-                                    <h1>Beverages</h1>
-                                    <i class="fa-solid fa-square-arrow-up-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a style="height: auto; width: 20%; text-decoration: none;" href="categories/snacks.jsp">
-                            <div class="catCard flex flexCol">
-                                <div class="catCardImg flex">
-                                    <img src="https://i.pinimg.com/564x/c4/f6/07/c4f607720c8a70c5b0d47c288740a216.jpg">
-                                </div>
-                                <div class="catContent flex flexRow">
-                                    <h1>Snacks</h1>
-                                    <i class="fa-solid fa-square-arrow-up-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a style="height: auto; width: 20%; text-decoration: none;" href="categories/fruits.jsp">
-                            <div class="catCard flex flexCol">
-                                <div class="catCardImg flex">
-                                    <img src="https://img.freepik.com/premium-vector/cute-orange-fruit-icon-flat-style-isolated-white-background-vector-illustration_186686-162.jpg">
-                                </div>
-                                <div class="catContent flex flexRow">
-                                    <h1>Fruits</h1>
-                                    <i class="fa-solid fa-square-arrow-up-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a style="height: auto; width: 20%; text-decoration: none;" href="categories/medicine.jsp">
-                            <div class="catCard flex flexCol">
-                                <div class="catCardImg flex">
-                                    <img src="https://i.pinimg.com/736x/70/9a/b7/709ab72681e74e7fb4e37be753c75dd1.jpg">
-                                </div>
-                                <div class="catContent flex flexRow">
-                                    <h1>Medicine</h1>
-                                    <i class="fa-solid fa-square-arrow-up-right"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-                
-            </div>
-        </div>
-        <script>
-            function addToCart(productId) {
-                let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-                const existingItem = cartItems.find(item => item.productId === productId);
+<head>
+<meta charset="UTF-8">
+<title>Book Shop</title>
+<jsp:include page="includes/header.jsp" />
+<style>
+/* CSS styles go here */
+.py-5 {
+  background-image: url("https://t4.ftcdn.net/jpg/01/46/40/35/360_F_146403506_381OxD624hppWMQcIbjLuSr8TCW1q2lj.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
-                if (existingItem) {
-                    existingItem.quantity++;
-                } else {
-                    cartItems.push({ productId, quantity: 1 });
-                }
-                localStorage.setItem("cart", JSON.stringify(cartItems));
-                alert("Product added to cart!");
-                location.reload();
-            }
 
-            function addToWishlist(productId) {
-                let wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || [];
-                const existingItem = wishlistItems.find(item => item.productId === productId);
 
-                if (existingItem) {
-                    alert("Product already in the wishlist!");
-                } else {
-                    wishlistItems.push({ productId });
-                }
 
-                localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
+.drop {
+  background-image: url("https://img.freepik.com/premium-photo/old-books-wooden-table-education_220873-10039.jpg?w=826");
+  background-size: cover;
+  background-position: center;
+}
+</style>
+</head>
+<body>
+	<jsp:include page="includes/nav.jsp" />
 
-                alert("Product added to wishlist!");
-            }
-        </script>
-        <!--======================================================== PAGE-CONTENT END -->
-        
-        
-        <!-- FOOTER START ============================================================-->
-        <footer class="flex" id="footer"></footer>
-        <script src="footer.js"></script>
-        <!--============================================================== FOOTER END -->
-        
-        
-        <!-- SCROLL-TO-TOP START =====================================================-->
-        <button id="toTopBtn" class="flex greenBtn" title="Scroll to Top">
-            <i class="fa-solid fa-chevron-up"></i>
-        </button>
-        <!--======================================================= SCROLL-TO-TOP END -->
-        
-    </body>
+	<header class="bg-dark py-2">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Eramanis Computer shop</h1>
+				<p class="lead fw-normal text-white-50 mb-0">Buy Computer</p>
+			</div>
+		</div>
+	</header>
+	
+	<!-- Dropdown -->
+	<div class="drop ">
+		<div class="row justify-content-left px-2 px-lg-2 mt-2">
+			<div class="col-md-2">
+				<form action="" method="GET">
+					<div class="form-group">
+						
+						<select class="form-control" id="publisher" name="publisher" onchange="this.form.submit()">
+							<option value="All" <% if (selectedPublisher == null || selectedPublisher.equals("All")) { %>selected<% } %>>All</option>
+							<option value="Novels" <% if (selectedPublisher != null && selectedPublisher.equals("Novels")) { %>selected<% } %>>Novels</option>
+							<option value="Translations" <% if (selectedPublisher != null && selectedPublisher.equals("Translations")) { %>selected<% } %>>Translations</option>
+							<option value="Kids Books" <% if (selectedPublisher != null && selectedPublisher.equals("Kids Books")) { %>selected<% } %>>Kids Books</option>
+							<option value="Short stories" <% if (selectedPublisher != null && selectedPublisher.equals("Short stories")) { %>selected<% } %>>Short stories</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<section class="py-5">
+		<div class="container px-1 px-lg-2">
+			<div
+				class="row gx-5 gx-lg-2 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
+				
+				<% ArrayList<accesories> accesories = (ArrayList<accesories>)request.getAttribute("books"); %>
+				
+				<% if (accesories != null && !accesories.isEmpty()) { %>
+					<% for(accesories book: accesories){ %>
+						<% if (selectedPublisher == null || selectedPublisher.equals("All") || selectedPublisher.equals(book.getType())) { %>
+							<div class="col mb-5">
+								<div class="card h-100">
+									<img style="width: 100%; height: 200px; object-fit: cover;" class="card-img-top" src="<%=contextPath %>/uploads/<%=book.getImage()%>" alt="..." />
+									<div class="card-body p-4">
+										<div class="text-center">
+											<!-- Product name-->
+											<h5 class="fw-bolder" style="text-transform: uppercase;">
+												<%=book.getName() %></h5>
+											<div><%=book.getType() %> </div>
+											
+											<!-- Product price-->
+											Rs. <%=book.getPrice() %>0
+										</div>
+									</div>
+									<!-- Product actions-->
+									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+									<!-- Check if quantity is greater than 0 -->
+                					<% if (book.getQuantity() > 0) { %>
+                    					<!-- Display "View" link -->
+                    					<div class="text-center">
+											<a href="GetBookDetailsServlet?id=<%=book.getId() %>" class="btn btn-outline-secondary">View</a>
+										</div>
+                					<% } else { %>
+                   				 		<!-- Display "Out of Stock" -->
+                    					<div class="text-center text-danger">Out of Stock</div>
+                					<% } %>
+									</div>
+								</div>
+							</div>
+						<% } %>
+					<% } %>
+				<% } %>
+				
+			</div>
+		</div>
+	</section>
+</body>
 </html>

@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-         version="5.0">
-
-    <servlet>
-        <servlet-name>SearchResults</servlet-name>
-        <jsp-file>/searchResults.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchResults</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/404.jsp</location>
-    </error-page>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>book</display-name>
+  <welcome-file-list>
+    <welcome-file>HomeServlet</welcome-file>
+  </welcome-file-list>
+      <filter>
+        <filter-name>AdminAuth</filter-name>
+        <filter-class>controllers.admin.AdminAuth</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminAuth</filter-name>
+        <url-pattern>/AdminHomeServlet</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>EmployeeAuth</filter-name>
+        <filter-class>controllers.employee.EmployeeAuth</filter-class>
+    </filter>
+     <filter>
+        <filter-name>RegisterServlet</filter-name>
+        <filter-class>controllers.customer.RegisterServlet</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EmployeeAuth</filter-name>
+        <url-pattern>/EmployeeHomeServlet</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RegisterServlet</filter-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </filter-mapping>
 </web-app>
